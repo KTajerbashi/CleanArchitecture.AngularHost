@@ -45,6 +45,7 @@ application from one entry point.
 | Database | SQL Server (EF Core) |
 | Orchestration | .NET Aspire (AppHost + ServiceDefaults) |
 | Architecture | Clean Architecture |
+| Containerization | Docker, Docker Compose |
 
 ## Project Structure
 
@@ -71,7 +72,8 @@ Src/
 - Visual Studio 2022 (17.9+) with the **.NET Aspire workload** installed
 - .NET SDK (matching the solution's target version)
 - Node.js (for the Angular build)
-- SQL Server (local or containerized)
+- SQL Server (local, containerized, or via `docker compose`)
+- Docker & Docker Compose (only needed for the containerized run)
 
 ### Run with Visual Studio
 1. Clone the repository and open `AngularApp.slnx` in Visual Studio
@@ -89,11 +91,34 @@ Src/
 > distributed application through the Aspire dashboard, with health checks
 > and telemetry for every service visible in one place.
 
+### Run with Docker
+
+The solution can also run fully containerized, independent of Visual Studio
+or Aspire — the Angular client and the .NET WebApp are built together in a
+multi-stage `Dockerfile`, and `docker-compose` wires the app up with its own
+SQL Server instance.
+
+```bash
+docker compose up --build
+```
+
+This starts:
+- **`sqlserver`** — SQL Server 2022, with a persisted volume for data
+- **`webapp`** — the Angular client built and served through ASP.NET Core
+
+Once both containers are healthy, the app is available at
+`http://localhost:8080`.
+
+> The Dockerfile builds the Angular app (`npm ci` + `npm run build`) in a
+> Node stage, then copies the compiled output into the .NET build stage
+> before `dotnet publish` — so the final runtime image contains a single,
+> self-hosted application with no separate frontend server.
+
 ## Scope of this repository
 
 This is an **architecture and infrastructure template**, not a finished
-business application. It doesn't include tests or a Dockerfile, since the
-goal here is to demonstrate the hosting and orchestration pattern rather
-than a specific feature set. For a fully implemented project — with domain
-logic, CQRS, automated tests, Docker, and CI/CD — see the flagship projects
-linked from my [profile](https://github.com/KTajerbashi).
+business application. It doesn't include automated tests, since the goal
+here is to demonstrate the hosting, orchestration, and containerization
+pattern rather than a specific feature set. For a fully implemented project
+— with domain logic, CQRS, automated tests, and CI/CD — see the flagship
+projects linked from my [profile](https://github.com/KTajerbashi).
