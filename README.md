@@ -14,7 +14,7 @@ The primary goal is to avoid rebuilding the same architectural and infrastructur
 
 ## Overview
 
-`CleanArchitecture.AngularHost` is an **Infrastructure Source Template** designed for teams and developers who want a ready-to-use foundation for new full-stack applications.
+`clean-architecture-angular-host` is an **Infrastructure Source Template** designed for teams and developers who want a ready-to-use foundation for new full-stack applications.
 
 The template combines:
 
@@ -91,7 +91,7 @@ Configure Dependency Injection
         ↓
 Configure API
         ↓
-Configure Angular hosting
+Configure Angular ing
         ↓
 Configure Docker
         ↓
@@ -105,7 +105,7 @@ Configure shared infrastructure
 a new project can start from this template:
 
 ```text
-CleanArchitecture.AngularHost
+clean-architecture-angular-host
              │
              ▼
           Clone
@@ -265,7 +265,7 @@ The Domain layer remains independent from infrastructure and presentation concer
 # Project Structure
 
 ```text
-CleanArchitecture.AngularHost/
+clean-architecture-angular-host/
 │
 ├── AngularApp.slnx
 ├── Dockerfile
@@ -518,13 +518,13 @@ Depending on the development workflow, you may need:
 Clone the repository:
 
 ```bash
-git clone https://github.com/KTajerbashi/CleanArchitecture.AngularHost.git
+git clone https://github.com/KTajerbashi/clean-architecture-angular-host.git
 ```
 
 Navigate into the repository:
 
 ```bash
-cd CleanArchitecture.AngularHost
+cd clean-architecture-angular-host
 ```
 
 Open the solution:
@@ -562,7 +562,7 @@ The Aspire dashboard can be used to observe the running application and its asso
 Build the image:
 
 ```bash
-docker build -t cleanarchitecture-angularhost .
+docker build -t clean-architecture-angular-host .
 ```
 
 Run the container:
@@ -570,8 +570,8 @@ Run the container:
 ```bash
 docker run -d \
   -p 8080:8080 \
-  --name cleanarchitecture-angularhost \
-  cleanarchitecture-angularhost
+  --name clean-architecture-angular-host \
+  clean-architecture-angular-host
 ```
 
 The application will then be available through the configured HTTP endpoint.
@@ -634,7 +634,7 @@ Imagine you want to build an Enterprise Resource Planning system.
 You would start with:
 
 ```text
-CleanArchitecture.AngularHost
+clean-architecture-angular-host
 ```
 
 and then build the business domain on top:
@@ -915,7 +915,7 @@ A business application can be implemented on top of this repository without chan
 For example:
 
 ```text
-CleanArchitecture.AngularHost
+clean-architecture-angular-host
             │
             ├── CRM
             ├── ERP
@@ -1028,7 +1028,7 @@ If this repository is intended to be publicly reusable, an explicit open-source 
 
 # Summary
 
-`CleanArchitecture.AngularHost` is not a finished software product.
+`clean-architecture-angular-host` is not a finished software product.
 
 It is a **reusable infrastructure source template** designed to provide the technical foundation required to build modern full-stack applications with:
 
